@@ -34,7 +34,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "80:80"
+      - "8080:80"   ## Originalmente tenía 80:80, pero lo cambié a 8080:80 para evitar conflictos con otros servicios que puedan usar el puerto 80
     depends_on:
       - backend
 

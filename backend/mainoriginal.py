@@ -275,12 +275,7 @@ def admin_list_groups(camp_year: Optional[int] = Query(default=None), db: Sessio
         q = q.filter(CampYear.year == camp_year)
     return q.order_by(Group.id.desc()).all()
 
-## CHANGED @app.post("/api/admin/groups/{group_id}/members", response_model=GroupMemberOut, dependencies=[Depends(require_role("admin"))])  
-
-
-@app.post("/api/admin/groups/{group_id}/members", response_model=GroupMembershipCreate, dependencies=[Depends(require_role("admin"))])
-
-
+@app.post("/api/admin/groups/{group_id}/members", response_model=GroupMemberOut, dependencies=[Depends(require_role("admin"))])
 def admin_add_group_member(group_id: int, payload: GroupMembershipCreate, db: Session = Depends(get_db)):
     g = db.query(Group).filter(Group.id == group_id).first()
     if not g:
